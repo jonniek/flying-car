@@ -1,0 +1,26 @@
+{
+  "title": "Orbital Rush",
+  "tempo_target_bpm": 124,
+  "source": "ElevenLabs Music",
+  "created_utc": "2026-10-17T15:16:08.345024+00:00",
+  "api_documentation": "https://elevenlabs.io/docs/api-reference/music/compose",
+  "request": {
+    "prompt": "Write a complete original instrumental for an atmospheric futuristic electric-car radio station. Strictly no voices, singing, speech, vocal chops, choir, whispers, or vocoder. Original melodies and sound design only; no quotations or samples of existing music. Polished warm stereo mix, controlled bass, smooth high frequencies, and space for vehicle sound effects. Start with an established pulse, develop a restrained recurring motif, vary the arrangement every eight bars, keep momentum throughout, and end on the ongoing groove without silence or a dramatic finale. Cinematic melodic techno at 124 BPM, 4/4, approximately 48 bars. Tight four-on-the-floor kick, rolling rounded sub bass, syncopated sixteenth-note modular plucks, restrained hats, wide slowly opening synth pads. Cold orbital architecture and a rocket launch site at blue twilight; weightless atmosphere over a propulsive groove. An original rising pentatonic synth motif and short stereo echoes. No festival drops or long beatless breakdown. ",
+    "music_length_ms": 92903,
+    "model_id": "music_v2",
+    "force_instrumental": true
+  },
+  "song_id": "Hh5V7IrItFxL24NQENGH",
+  "file": "/audio/radio/orbital-rush.mp3",
+  "duration_seconds": 92.917551,
+  "processing": {
+    "lufs_target": -18,
+    "true_peak_limit_db": -1.5,
+    "sample_rate": 44100,
+    "channels": 2,
+    "source_lufs": -13.81,
+    "measured_lufs": -18.21,
+    "measured_true_peak_dbfs": -1.78
+  },
+  "decoded_duration_seconds": 92.91755102040817
+}

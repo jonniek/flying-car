@@ -1,0 +1,15 @@
+Free Racing and Driving Sounds - 8 Game Sound Effects, Free
+Source: moneywithjjcom, https://moneywithjjcom.itch.io/free-racing-sounds
+Used asset: gravel-loop.wav, processed as gravel-loop.mp3.
+
+License reproduced from the supplied pack README:
+
+Royalty-free for commercial and non-commercial work, including games and video
+you sell. Unlimited projects, no attribution required, no expiry. Paid client
+work is fine, and you may commit these files to a public source repository as
+part of your project. You may not resell or redistribute the audio files on
+their own, or include them in another sound library or pack.
+
+The supplied README states that the audio was generated with ElevenLabs Sound
+Effects under a paid commercial subscription, then screened, level-matched
+and edited by hand.

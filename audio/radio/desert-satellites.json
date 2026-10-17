@@ -1,0 +1,26 @@
+{
+  "title": "Desert Satellites",
+  "tempo_target_bpm": 78,
+  "source": "ElevenLabs Music",
+  "created_utc": "2026-10-17T15:16:43.644033+00:00",
+  "api_documentation": "https://elevenlabs.io/docs/api-reference/music/compose",
+  "request": {
+    "prompt": "Write a complete original instrumental for an atmospheric futuristic electric-car radio station. Strictly no voices, singing, speech, vocal chops, choir, whispers, or vocoder. Original melodies and sound design only; no quotations or samples of existing music. Polished warm stereo mix, controlled bass, smooth high frequencies, and space for vehicle sound effects. Start with an established pulse, develop a restrained recurring motif, vary the arrangement every eight bars, keep momentum throughout, and end on the ongoing groove without silence or a dramatic finale. Cinematic downtempo electronica at 78 BPM, 4/4, approximately 32 bars. Slow firm broken-beat drums with a satisfying snare, deep warm bass, sparse reverberant electric-piano notes, distant analog strings and soft granular synthesizer stars. An immense dark Texas desert beneath satellites, lonely but hopeful. Strong unhurried head-nodding groove, a memorable original three-note electric-piano motif and deep atmosphere, not sleep music, no vinyl crackle. ",
+    "music_length_ms": 98462,
+    "model_id": "music_v2",
+    "force_instrumental": true
+  },
+  "song_id": "69JSTBiM5D9ZamoVZW4I",
+  "file": "/audio/radio/desert-satellites.mp3",
+  "duration_seconds": 98.429388,
+  "processing": {
+    "lufs_target": -18,
+    "true_peak_limit_db": -1.5,
+    "sample_rate": 44100,
+    "channels": 2,
+    "source_lufs": -14.6,
+    "measured_lufs": -18.45,
+    "measured_true_peak_dbfs": -2.78
+  },
+  "decoded_duration_seconds": 98.42938775510204
+}

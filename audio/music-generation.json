@@ -1,0 +1,30 @@
+{
+  "title": "Twilight Drive \u2014 Night Circuit",
+  "genre": "instrumental dark synthwave",
+  "tempo_bpm": 104,
+  "source": "ElevenLabs Music",
+  "model": "music_v1",
+  "requested_duration_ms": 101538,
+  "force_instrumental": true,
+  "prompt": "Compose an original instrumental dark synthwave soundtrack for a fast electric sports-car night drive. Confident medium-energy driving groove at exactly 104 BPM in 4/4. Punchy electronic kick, powerful gated snare backbeat, crisp syncopated hi-hats, and a deep pulsing analog synthesizer bass ostinato. Minor-key cinematic analog synth chords, an original memorable restrained synth motif, and rhythmic sixteenth-note arpeggios. Nostalgic 1980s retro-futuristic neon highway atmosphere, moody, dark, propulsive and stylish, with a strong audible beat throughout. Full polished stereo production with warm saturated synths and firm drums. Not ambient, not lo-fi, not chillout, no sleepy soft drums. Exactly 44 bars, approximately 101.54 seconds. Start immediately on a full established groove on the downbeat. Maintain the same tempo and repeating four-bar minor harmonic cycle throughout, adding subtle rhythmic variations without breakdowns. End with the same groove and opening harmony ready to repeat. No fade-in, no fade-out, no silent intro, no outro, no dramatic ending. All melodies and sounds must be original; do not quote or sample existing music. Strictly instrumental: no lyrics, singing, speech, vocal samples, choirs, whispers, or vocoder. Leave room around the music for tire and wind sounds.",
+  "status": "saved",
+  "api_documentation": "https://elevenlabs.io/docs/api-reference/music/compose",
+  "bytes": 1627159,
+  "song_id": "8aO4J57NAD8cwd3H3GnR",
+  "file": "twilight-drive.mp3",
+  "processing": {
+    "crossfade_seconds": 9.23076923076923,
+    "crossfade_bars": 4,
+    "source_duration_seconds": 101.69469387755102,
+    "trimmed_source_seconds": 101.538,
+    "decoded_duration_seconds": 92.30723356009071,
+    "target_lufs": -18,
+    "true_peak_limit_db": -1.5,
+    "sample_peak_dbfs": -5.91,
+    "loop_endpoint_delta": 0.026632,
+    "sample_rate_hz": 44100,
+    "bitrate_kbps": 160,
+    "measured_lufs": -18.6,
+    "measured_true_peak_dbfs": -5.9
+  }
+}

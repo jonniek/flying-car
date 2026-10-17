@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#101113" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <meta name="description" content="Flying car. An electric driving simulator with cold-gas flight and active suction." />
+  <title>Flying car</title>
+  <!-- Startup must be fully styled before any JavaScript or game CSS arrives. -->
+  <style>
+    html,body{margin:0;min-height:100%;background:#101113;color:#f5f5f5;font-family:Arial,Helvetica,sans-serif;overflow:hidden}
+    #game[inert]{visibility:hidden}
+    #loading{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 42%,#141c28 0%,#101113 65%);transition:opacity .25s ease}
+    #loading.is-ready{opacity:0;pointer-events:none}
+    .loading-card{width:min(280px,calc(100vw - 64px));text-align:center}
+    .loader-brand{font-size:20px;font-weight:500;letter-spacing:7px;padding-left:7px;margin-bottom:40px}
+    .loading-track{height:2px;background:#ffffff20;overflow:hidden;border-radius:2px}
+    #loading-fill{display:block;height:100%;width:0;background:#e82127;box-shadow:0 0 12px #e8212755}
+    .loading-detail{display:flex;justify-content:space-between;gap:16px;align-items:baseline;margin-top:13px;font-size:11px;line-height:1.5;color:#aeb7c3}
+    #loading-status{text-align:left}#loading-percent{font-variant-numeric:tabular-nums;white-space:nowrap;color:#e8edf4}
+    #loading-retry{display:inline-block;margin-top:26px;padding:9px 22px;border:1px solid #ffffff40;border-radius:3px;color:#f5f5f5;text-decoration:none;font-size:12px}
+    #loading-retry:hover{background:#ffffff12}#loading-retry:focus-visible{outline:2px solid #e82127;outline-offset:4px}
+    #loading [hidden]{display:none!important}.loading-noscript{margin:20px 0 0;font-size:12px;color:#aeb7c3;line-height:1.6}
+    @media(prefers-reduced-motion:reduce){#loading,#loading-fill{transition:none}}
+  </style>
+  <script type="module" crossorigin src="./assets/index-B_ITT6i7.js"></script>
+</head>
+<body class="driving">
+  <div id="game" inert aria-hidden="true">
+  <canvas id="scene" aria-label="Three dimensional Roadster driving simulator"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+  <header class="topbar">
+    <div class="brand"><span>Flying car</span><small id="current-area">Proving grounds</small></div>
+    <nav class="top-actions" aria-label="Driving tools">
+      <button id="sound" class="sound-button" title="Toggle sound" aria-label="Toggle sound">Sound <span id="sound-state">OFF</span></button>
+      <button id="front-view" class="icon-button" title="Front view · drag to orbit (F)" aria-label="Front view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 10 2-5h10l2 5M4 10h16v8H4zM7 18v2m10-2v2M7 14h2m6 0h2"/></svg></button>
+      <button id="camera-view" class="icon-button" title="Cycle camera (C)" aria-label="Cycle camera"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h5l2-3h4l2 3h5v13H3z"/><circle cx="12" cy="13" r="4"/></svg></button>
+      <button id="help" class="icon-button" title="Controls (H)" aria-label="Toggle control hints" aria-expanded="false">?</button>
+    </nav>
+  </header>
+  <aside class="quick-controls" aria-label="Driving shortcuts">
+    <nav class="location-shortcuts" aria-label="Go to location">
+      <button data-zone="demo" title="Reveal ramp (1)"><kbd>1</kbd> Reveal</button>
+      <button data-zone="circuit" title="Test track (2)"><kbd>2</kbd> Track</button>
+      <button data-zone="lineup" title="Tesla lineup (3)"><kbd>3</kbd> Lineup</button>
+      <button data-zone="transfer" title="Parallel transfer (4)"><kbd>4</kbd> Transfer</button>
+      <button data-zone="inversion" title="Upside-down loop (5)"><kbd>5</kbd> Loop</button>
+      <button data-zone="canyon" title="Canyon jump (6)"><kbd>6</kbd> Canyon</button>
+      <button data-zone="highway" title="Highway (7)"><kbd>7</kbd> Highway</button>
+      <button data-zone="pad" title="Starship launch pad (8)"><kbd>8</kbd> Starship</button>
+      <button data-zone="city" title="Downtown (9)"><kbd>9</kbd> City</button>
+      <button data-zone="flyover" title="Stack flyover (0)"><kbd>0</kbd> Flyover</button>
+    </nav>
+    <div class="key-guide">
+      <p><span><kbd>W/S</kbd> Pedals</span><span><kbd>A/D</kbd> Steer</span><span><kbd>Q/E</kbd> Suction / air yaw</span></p>
+      <p><span><kbd>SPACE</kbd> Hold to lift</span><span><kbd>SHIFT</kbd> Boost</span><span><kbd>↑↓ ←→</kbd> Pitch / roll</span></p>
+      <p><span><kbd>F</kbd> Front</span><span><kbd>C</kbd> Camera</span><span><kbd>R</kbd> Reset</span></p>
+    </div>
+  </aside>
+  <nav class="mobile-tools" aria-label="Touch driving tools">
+    <select id="mobile-location" aria-label="Drive at location">
+      <option value="demo">Reveal</option><option value="circuit">Test track</option><option value="lineup">Tesla lineup</option>
+      <option value="transfer">Transfer</option><option value="inversion">Loop</option><option value="canyon">Canyon</option>
+      <option value="highway">Highway</option><option value="pad">Starship</option><option value="city">City</option><option value="flyover">Flyover</option>
+    </select>
+    <button id="mobile-reset" type="button" aria-label="Reset car" title="Reset car">↺</button>
+  </nav>
+  <aside id="quest-log" class="quest-log" aria-label="Driving challenges">
+    <div class="quest-run-heading"><time id="run-time" aria-label="Run time">00:00</time><span id="run-progress" aria-label="Challenges completed">0 / 10</span><button id="run-results" type="button" aria-label="View run results" title="Results" hidden>↗</button><button id="mobile-next-quest" type="button" aria-label="Next challenge" title="Next challenge">›</button></div>
+    <small id="run-time-note" class="run-time-note" hidden>Resumed time</small>
+    <div id="quest-heading" class="quest-heading">CHALLENGES</div>
+    <div class="quest-cards">
+      <button id="quest-card-0" class="quest-card" type="button" aria-pressed="false" hidden>
+        <span class="quest-card-heading"><span id="quest-card-0-title"></span><span id="quest-card-0-marker" class="quest-card-marker" aria-hidden="true"></span></span>
+        <span class="quest-card-summary"><span id="quest-card-0-next" class="quest-next-step"></span><span class="quest-steps" aria-hidden="true"><span id="quest-card-0-step-0"></span><span id="quest-card-0-step-1"></span><span id="quest-card-0-step-2"></span><span id="quest-card-0-step-3"></span><span id="quest-card-0-step-4"></span><span id="quest-card-0-step-5"></span></span></span>
+        <span id="quest-card-0-detail" class="quest-card-detail" hidden><span id="quest-card-0-hint" class="quest-hint"></span><span id="quest-card-0-feedback" class="quest-feedback" hidden></span></span>
+        <span class="quest-progress" aria-hidden="true"><span id="quest-card-0-progress"></span></span>
+      </button>
+      <button id="quest-card-1" class="quest-card" type="button" aria-pressed="false" hidden>
+        <span class="quest-card-heading"><span id="quest-card-1-title"></span><span id="quest-card-1-marker" class="quest-card-marker" aria-hidden="true"></span></span>
+        <span class="quest-card-summary"><span id="quest-card-1-next" class="quest-next-step"></span><span class="quest-steps" aria-hidden="true"><span id="quest-card-1-step-0"></span><span id="quest-card-1-step-1"></span><span id="quest-card-1-step-2"></span><span id="quest-card-1-step-3"></span><span id="quest-card-1-step-4"></span><span id="quest-card-1-step-5"></span></span></span>
+        <span id="quest-card-1-detail" class="quest-card-detail" hidden><span id="quest-card-1-hint" class="quest-hint"></span><span id="quest-card-1-feedback" class="quest-feedback" hidden></span></span>
+        <span class="quest-progress" aria-hidden="true"><span id="quest-card-1-progress"></span></span>
+      </button>
+      <button id="quest-card-2" class="quest-card" type="button" aria-pressed="false" hidden>
+        <span class="quest-card-heading"><span id="quest-card-2-title"></span><span id="quest-card-2-marker" class="quest-card-marker" aria-hidden="true"></span></span>
+        <span class="quest-card-summary"><span id="quest-card-2-next" class="quest-next-step"></span><span class="quest-steps" aria-hidden="true"><span id="quest-card-2-step-0"></span><span id="quest-card-2-step-1"></span><span id="quest-card-2-step-2"></span><span id="quest-card-2-step-3"></span><span id="quest-card-2-step-4"></span><span id="quest-card-2-step-5"></span></span></span>
+        <span id="quest-card-2-detail" class="quest-card-detail" hidden><span id="quest-card-2-hint" class="quest-hint"></span><span id="quest-card-2-feedback" class="quest-feedback" hidden></span></span>
+        <span class="quest-progress" aria-hidden="true"><span id="quest-card-2-progress"></span></span>
+      </button>
+      <button id="quest-card-3" class="quest-card" type="button" aria-pressed="false" hidden>
+        <span class="quest-card-heading"><span id="quest-card-3-title"></span><span id="quest-card-3-marker" class="quest-card-marker" aria-hidden="true"></span></span>
+        <span class="quest-card-summary"><span id="quest-card-3-next" class="quest-next-step"></span><span class="quest-steps" aria-hidden="true"><span id="quest-card-3-step-0"></span><span id="quest-card-3-step-1"></span><span id="quest-card-3-step-2"></span><span id="quest-card-3-step-3"></span><span id="quest-card-3-step-4"></span><span id="quest-card-3-step-5"></span></span></span>
+        <span id="quest-card-3-detail" class="quest-card-detail" hidden><span id="quest-card-3-hint" class="quest-hint"></span><span id="quest-card-3-feedback" class="quest-feedback" hidden></span></span>
+        <span class="quest-progress" aria-hidden="true"><span id="quest-card-3-progress"></span></span>
+      </button>
+    </div>
+  </aside>
+  <aside id="controls-hint" class="controls-hint hidden" aria-label="Control hints">
+    <div class="touch-help"><p>Left: steer · In air: move sideways &amp; forward/back.</p><p>Tap Yaw to rotate instead of moving sideways.</p><p>Right: gas / brake · In air: roll &amp; pitch.</p><p>Hold Jump to rise. Boost follows the nose.</p><p>Grip cycles 0 / 50 / 100%. Drag the view to look around.</p><button id="mobile-demo" type="button">Watch reveal demo</button></div>
+    <p><kbd>W S</kbd> Pedals <kbd>A D</kbd> Steer <kbd>Q E</kbd> Suction</p>
+    <p><kbd>SPACE</kbd> Jump / hold to lift <kbd>SHIFT</kbd> Boost</p>
+    <p>In air: <kbd>W S</kbd> Forward / back <kbd>A D</kbd> Sideways</p>
+    <p><kbd>↑ ↓</kbd> Pitch <kbd>← →</kbd> Roll <kbd>Q E</kbd> Yaw</p>
+    <p><kbd>F</kbd> Front <kbd>C</kbd> Cameras · Drag / wheel to orbit</p>
+    <p><kbd>1–0</kbd> Locations <kbd>M</kbd> Map <kbd>T</kbd> Demo <kbd>R</kbd> Reset</p>
+    <small>1 Reveal · 2 Test track · 3 Lineup · 4 Transfer · 5 Inversion · 6 Canyon · 7 Highway · 8 Starship · 9 City · 0 Flyover</small>
+  </aside>
+  <div id="touch-controls" class="touch-controls" aria-label="Touch driving controls" hidden>
+    <div class="touch-left">
+      <div class="touch-left-tools">
+        <button id="touch-suction" type="button" aria-label="Change suction power">Grip <span id="touch-suction-value">0%</span></button>
+        <button id="touch-air-mode" type="button" aria-label="Yaw mode off. Switch left stick to yaw" aria-pressed="false" hidden disabled>Yaw</button>
+      </div>
+      <div id="touch-steer" class="touch-stick" role="group" tabindex="0" aria-label="Steering stick. In air, sideways and forward or backward movement.">
+        <span class="touch-axis touch-axis-x" aria-hidden="true"></span><span class="touch-axis touch-axis-y" aria-hidden="true"></span>
+        <span id="touch-steer-knob" class="touch-knob" aria-hidden="true"></span>
+      </div>
+      <span id="touch-left-label" class="touch-label">Steer</span>
+    </div>
+    <div class="touch-center">
+      <button id="touch-jump" class="touch-jump" type="button" aria-label="Hold to jump and lift"><span aria-hidden="true">↑</span>Jump</button>
+      <button id="touch-boost" class="touch-boost" type="button" aria-label="Hold rocket boost">Boost</button>
+    </div>
+    <div class="touch-right">
+      <div id="touch-flight" class="touch-stick" role="group" tabindex="0" aria-label="Gas and brake stick. In air, roll and pitch.">
+        <span class="touch-axis touch-axis-x" aria-hidden="true"></span><span class="touch-axis touch-axis-y" aria-hidden="true"></span>
+        <span id="touch-flight-knob" class="touch-knob" aria-hidden="true"></span>
+      </div>
+      <span id="touch-right-label" class="touch-label">Gas / brake</span>
+    </div>
+  </div>
+  <div id="hud">
+    <div id="air-status" class="air-status hidden">
+      <div><span id="air-mode">Manual flight</span><span class="altitude"><b id="altitude">0</b> <small>m</small></span></div>
+      <small id="air-instruction">↑ ↓ Pitch · ← → Roll · Q E Yaw</small>
+    </div>
+    <div class="bottom-left">
+      <canvas id="minimap" width="260" height="150" aria-label="Road minimap and route line"></canvas></div>
+    <div class="speedometer" aria-label="Vehicle speed"><span id="speed">0</span><div class="speed-unit"><span id="gear">D</span><button id="speed-unit" aria-label="Speed unit: kilometres per hour. Switch to miles per hour" title="Switch to miles per hour">KM/H</button></div></div>
+    <div class="suction">
+      <div class="suction-heading"><span>Suction</span><span><b id="suction-value">0</b><small>%</small></span></div>
+      <div class="meter"><span id="suction-bar" style="width:0%"></span></div>
+      <div class="suction-controls"><kbd>Q</kbd><span>−</span><span>+</span><kbd>E</kbd></div>
+    </div>
+  </div>
+  <aside id="radio-dock" class="radio-dock" aria-label="Car radio" data-state="ready" data-open="false">
+    <div id="radio-presets" class="radio-presets" role="group" aria-label="Radio stations" hidden>
+      <span class="radio-picker-label">STATIONS</span>
+      <button id="radio-preset-neon" class="radio-preset" type="button" data-radio-station="neon" aria-pressed="true"><span id="radio-preset-neon-frequency" class="radio-preset-frequency">104.2</span><span class="radio-preset-copy"><span id="radio-preset-neon-name">NEON FM</span><small id="radio-preset-neon-style">Dark synthwave</small></span><span class="radio-preset-mark" aria-hidden="true"></span></button>
+      <button id="radio-preset-ion" class="radio-preset" type="button" data-radio-station="ion" aria-pressed="false"><span id="radio-preset-ion-frequency" class="radio-preset-frequency">98.6</span><span class="radio-preset-copy"><span id="radio-preset-ion-name">ION RADIO</span><small id="radio-preset-ion-style">Atmospheric techno</small></span><span class="radio-preset-mark" aria-hidden="true"></span></button>
+      <button id="radio-preset-dusk" class="radio-preset" type="button" data-radio-station="dusk" aria-pressed="false"><span id="radio-preset-dusk-frequency" class="radio-preset-frequency">88.4</span><span class="radio-preset-copy"><span id="radio-preset-dusk-name">DUSK SIGNAL</span><small id="radio-preset-dusk-style">Cinematic downtempo</small></span><span class="radio-preset-mark" aria-hidden="true"></span></button>
+    </div>
+    <div class="radio-player">
+      <button id="radio-expand" class="radio-now-playing" type="button" aria-expanded="false" aria-controls="radio-presets" aria-label="Choose radio station"><span class="radio-meta"><span id="radio-frequency">104.2 FM</span><span class="radio-live"><i aria-hidden="true"></i><span id="radio-status">READY</span></span></span><span id="radio-station">NEON FM</span><span id="radio-track">Night Circuit</span><svg class="radio-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m5 9 3-3 3 3"/></svg></button>
+      <button id="radio-power" class="radio-power" type="button" aria-pressed="true" aria-label="Turn radio off"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v9m-5-6a8 8 0 1 0 10 0"/></svg></button>
+    </div>
+    <div class="radio-track-progress" aria-hidden="true"><span id="radio-progress"></span></div>
+  </aside>
+  <div id="achievement" class="achievement" role="status" aria-live="polite" hidden>
+    <div class="achievement-emblem" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="27"/><path d="m19 32 9 9 18-19"/></svg></div>
+    <div class="achievement-copy"><span id="achievement-label">ACHIEVED</span><h2 id="achievement-title"></h2><p id="achievement-next"></p></div>
+    <span class="achievement-sheen" aria-hidden="true"></span>
+  </div>
+  <div id="toast" class="toast hidden" role="status"></div>
+  <div id="letter-pickup" class="letter-pickup" role="status" aria-live="polite" hidden><b id="letter-pickup-value"></b></div>
+  <dialog id="run-finish" class="run-finish" aria-labelledby="run-finish-title">
+    <span class="finish-kicker">FLYING CAR</span>
+    <div class="finish-mark" aria-hidden="true">✓</div>
+    <h2 id="run-finish-title">All clear.</h2>
+    <p id="finish-progress">10 / 10 challenges</p>
+    <div class="finish-time"><strong id="finish-time"></strong><span id="finish-time-label">Run time</span></div>
+    <div class="finish-stats"><div><b id="finish-speed"></b><span id="finish-speed-unit">Top speed · km/h</span></div><div><b id="finish-tricks"></b><span>Clean tricks</span></div></div>
+    <a id="finish-share" class="finish-share" target="_blank" rel="noopener noreferrer">Share score on X ↗</a>
+    <div class="finish-actions"><button id="finish-drive" type="button" autofocus>Keep driving</button><button id="finish-restart" type="button">New run</button></div>
+  </dialog>
+  </div>
+  <div id="loading" aria-busy="true">
+    <div class="loading-card">
+      <div class="loader-brand">Flying car</div>
+      <div id="loading-progress" class="loading-track" role="progressbar" aria-label="Loading Flying car" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="Loading simulator">
+        <span id="loading-fill"></span>
+      </div>
+      <div class="loading-detail"><span id="loading-status" role="status" aria-live="polite">Loading simulator</span><span id="loading-percent" aria-hidden="true">0%</span></div>
+      <a id="loading-retry" href="" hidden>Retry</a>
+      <noscript><p class="loading-noscript">Enable JavaScript to start driving.</p></noscript>
+    </div>
+  </div>
+  <script>
+    // This also works when the bootstrap module itself cannot be downloaded.
+    window.roadsterStartupError = function () {
+      const loading = document.getElementById('loading');
+      if (!loading || loading.classList.contains('is-ready')) return;
+      loading.setAttribute('aria-busy', 'false');
+      document.getElementById('loading-status').textContent = 'Unable to start. Please retry.';
+      document.getElementById('loading-progress').setAttribute('aria-valuetext', 'Loading failed');
+      document.getElementById('loading-retry').hidden = false;
+    };
+  </script>
+</body>
+</html>

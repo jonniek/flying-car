@@ -1,0 +1,26 @@
+{
+  "title": "Blue Hour",
+  "tempo_target_bpm": 86,
+  "source": "ElevenLabs Music",
+  "created_utc": "2026-10-17T15:17:00.721867+00:00",
+  "api_documentation": "https://elevenlabs.io/docs/api-reference/music/compose",
+  "request": {
+    "prompt": "Write a complete original instrumental for an atmospheric futuristic electric-car radio station. Strictly no voices, singing, speech, vocal chops, choir, whispers, or vocoder. Original melodies and sound design only; no quotations or samples of existing music. Polished warm stereo mix, controlled bass, smooth high frequencies, and space for vehicle sound effects. Start with an established pulse, develop a restrained recurring motif, vary the arrangement every eight bars, keep momentum throughout, and end on the ongoing groove without silence or a dramatic finale. Atmospheric trip-hop and cinematic chill electronica at 86 BPM, 4/4, approximately 32 bars. Detailed swung drum-machine breaks, warm saturated bass, luminous FM keys, airy filtered analog pads, and subtle plucked synth countermelodies. A silent coastal launch complex under a cobalt sky with distant city lights. Melancholy yet purposeful, restrained and beautiful, with an audible steady beat and evolving suspended jazz harmonies. Clean production without vinyl noise and no long ambient intro. ",
+    "music_length_ms": 89302,
+    "model_id": "music_v2",
+    "force_instrumental": true
+  },
+  "song_id": "lkEM0xAsKN6FC10cuQXs",
+  "file": "/audio/radio/blue-hour.mp3",
+  "duration_seconds": 89.312653,
+  "processing": {
+    "lufs_target": -18,
+    "true_peak_limit_db": -1.5,
+    "sample_rate": 44100,
+    "channels": 2,
+    "source_lufs": -12.77,
+    "measured_lufs": -18.45,
+    "measured_true_peak_dbfs": -4.43
+  },
+  "decoded_duration_seconds": 89.3126530612245
+}

@@ -1,0 +1,26 @@
+{
+  "title": "Phase Vector",
+  "tempo_target_bpm": 130,
+  "source": "ElevenLabs Music",
+  "created_utc": "2026-10-17T15:16:27.059512+00:00",
+  "api_documentation": "https://elevenlabs.io/docs/api-reference/music/compose",
+  "request": {
+    "prompt": "Write a complete original instrumental for an atmospheric futuristic electric-car radio station. Strictly no voices, singing, speech, vocal chops, choir, whispers, or vocoder. Original melodies and sound design only; no quotations or samples of existing music. Polished warm stereo mix, controlled bass, smooth high frequencies, and space for vehicle sound effects. Start with an established pulse, develop a restrained recurring motif, vary the arrangement every eight bars, keep momentum throughout, and end on the ongoing groove without silence or a dramatic finale. Fast atmospheric dub techno at 130 BPM, 4/4, approximately 48 bars. Precise four-on-the-floor electronic drums, deep driving bass pulse, shuffled closed hats, clipped rim percussion, icy chord stabs through warm tape delay. A futuristic city tunnel accelerating into long blue light trails. A hypnotic evolving minor-chord sequence, occasional sparkling high arpeggios and strong rhythmic forward motion. Understated, spacious and cinematic, never abrasive. ",
+    "music_length_ms": 88615,
+    "model_id": "music_v2",
+    "force_instrumental": true
+  },
+  "song_id": "SwSQrzKxXjBOO2MNPZ0t",
+  "file": "/audio/radio/phase-vector.mp3",
+  "duration_seconds": 88.607347,
+  "processing": {
+    "lufs_target": -18,
+    "true_peak_limit_db": -1.5,
+    "sample_rate": 44100,
+    "channels": 2,
+    "source_lufs": -13.05,
+    "measured_lufs": -18.44,
+    "measured_true_peak_dbfs": -5.82
+  },
+  "decoded_duration_seconds": 88.6073469387755
+}
