@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#101113" />
   <meta name="color-scheme" content="dark" />
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="./assets/media/favicon-08ca5bbde5bf.svg" />
   <title>Flying car simulator</title>
   <meta name="description" content="Play Flying car simulator free in your browser. Drive, boost and fly a sports car through stunt courses, highways and a neon city. Desktop and mobile controls." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -50,6 +50,7 @@
   <style>
     html,body{margin:0;min-height:100%;background:#101113;color:#f5f5f5;font-family:Arial,Helvetica,sans-serif;overflow:hidden}
     #game[inert]{visibility:hidden}
+    #game[inert].scene-ready #scene{visibility:visible}
     #loading{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 42%,#141c28 0%,#101113 65%);transition:opacity .25s ease}
     #loading.is-ready{opacity:0;pointer-events:none}
     .loading-card{width:min(280px,calc(100vw - 64px));text-align:center}
@@ -62,20 +63,18 @@
     #loading-retry{display:inline-block;margin-top:26px;padding:9px 22px;border:1px solid #ffffff40;border-radius:3px;color:#f5f5f5;text-decoration:none;font-size:12px}
     #loading-retry:hover{background:#ffffff12}#loading-retry:focus-visible{outline:2px solid #e82127;outline-offset:4px}
     #loading [hidden]{display:none!important}.loading-noscript{margin:20px 0 0;font-size:12px;color:#aeb7c3;line-height:1.6}
-    #loading.choosing-mode .loading-card{width:min(420px,calc(100vw - 40px))}
-    #loading.choosing-mode .loader-brand{font-size:12px;letter-spacing:3px;margin-bottom:26px;color:#b0bccb}
-    .mode-title{font-size:29px;font-weight:400;letter-spacing:-.6px;margin:0 0 9px}
-    .mode-availability{font-size:11px;color:#9bd9c8;margin:0 0 26px}
-    .mode-choices{display:grid;gap:10px;text-align:left}
-    .mode-choice{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;box-sizing:border-box;padding:18px 20px;border:1px solid #b3c3d32b;border-radius:6px;background:#17202bd9;color:#eef4fa;font:inherit;cursor:pointer;text-align:left;transition:background .15s,border-color .15s}
-    .mode-choice:hover{background:#223040;border-color:#b3c3d36b}.mode-choice:focus-visible{outline:2px solid #e82127;outline-offset:3px}
-    .mode-choice strong{display:block;font-size:16px;font-weight:500}.mode-choice small{display:block;margin-top:6px;font-size:11px;color:#b1bdcb;line-height:1.5}
-    .mode-choice>span:last-child{font-size:20px;color:#aabacb}.mode-choice-multi{border-color:#82d7c34a;background:linear-gradient(110deg,#18312e,#17232b)}
-    .mode-note{margin:18px 0 0;font-size:11px;line-height:1.6;color:#8f9cab}
-    @media(max-height:540px){#loading.choosing-mode .loader-brand{margin-bottom:14px}.mode-availability{margin-bottom:16px}.mode-choice{padding:12px 16px}#loading.choosing-mode .loading-disclaimer{display:none}}
+    #loading.choosing-mode{align-items:end;background:linear-gradient(#10111345,transparent 30%,transparent 55%,#101113e8)}
+    #loading.choosing-mode .loading-card{width:min(380px,calc(100vw - 40px));margin-bottom:max(9vh,env(safe-area-inset-bottom))}
+    #loading.choosing-mode .loader-brand{position:fixed;top:max(7vh,env(safe-area-inset-top));left:20px;right:20px;margin:0;font-size:18px;text-shadow:0 2px 16px #000}
+    #loading.choosing-mode .loading-disclaimer{display:none}
+    .mode-choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .mode-choice{padding:17px 10px;border:1px solid #ffffff40;border-radius:6px;background:#121a23d9;color:#eef4fa;font:500 15px Arial,Helvetica,sans-serif;cursor:pointer;transition:background .15s,border-color .15s}
+    .mode-choice:hover{background:#263442;border-color:#ffffff90}.mode-choice:focus-visible{outline:2px solid #e82127;outline-offset:4px}
+    .mode-choice-multi{background:#253c3ad9;border-color:#9cc9bd80}
+    @media(max-height:440px){#loading.choosing-mode .loading-card{margin-bottom:18px}.mode-choice{padding:12px 10px}}
     @media(prefers-reduced-motion:reduce){#loading,#loading-fill{transition:none}}
   </style>
-  <script type="module" crossorigin src="./assets/index-XS4df2O0.js"></script>
+  <script type="module" crossorigin src="./assets/index-CneD-w5d.js"></script>
 </head>
 <body class="driving">
   <div id="game" inert aria-hidden="true">
@@ -211,7 +210,7 @@
       </nav>
       <canvas id="minimap" width="260" height="150" aria-label="Road minimap and route line"></canvas>
       <aside id="multiplayer-status" class="multiplayer-status" aria-label="Multiplayer session" hidden>
-        <span id="multiplayer-count" role="status" aria-live="polite"></span>
+        <span id="multiplayer-count">Multiplayer</span>
         <button id="multiplayer-leave" type="button" aria-label="Leave multiplayer and continue in single player">Leave</button>
       </aside>
       <div id="mobile-camera" class="mobile-camera"></div>
@@ -262,14 +261,11 @@
         <span id="loading-fill"></span>
       </div>
       <div id="loading-detail" class="loading-detail"><span id="loading-status" role="status" aria-live="polite">Loading simulator</span><span id="loading-percent" aria-hidden="true">0%</span></div>
-      <section id="loading-modes" aria-labelledby="mode-title" hidden>
-        <h1 id="mode-title" class="mode-title">How will you drive?</h1>
-        <p id="mode-availability" class="mode-availability"></p>
+      <section id="loading-modes" aria-label="Play mode" hidden>
         <div class="mode-choices">
-          <button id="mode-single" class="mode-choice" type="button"><span><strong>Single player</strong><small>Your road. Your pace.</small></span><span aria-hidden="true">→</span></button>
-          <button id="mode-multiplayer" class="mode-choice mode-choice-multi" type="button"><span><strong>Multiplayer</strong><small>Share the road with other drivers.</small></span><span aria-hidden="true">↗</span></button>
+          <button id="mode-single" class="mode-choice" type="button">Single player</button>
+          <button id="mode-multiplayer" class="mode-choice mode-choice-multi" type="button">Multiplayer</button>
         </div>
-        <p class="mode-note">Player cars pass through each other.<br>Challenges and traffic stay personal.</p>
       </section>
       <p class="loading-disclaimer">A game about the future.<br>Any resemblance to the present is&nbsp;intentional.</p>
       <a id="loading-retry" href="" hidden>Retry</a>
