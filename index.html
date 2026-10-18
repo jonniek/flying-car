@@ -62,9 +62,20 @@
     #loading-retry{display:inline-block;margin-top:26px;padding:9px 22px;border:1px solid #ffffff40;border-radius:3px;color:#f5f5f5;text-decoration:none;font-size:12px}
     #loading-retry:hover{background:#ffffff12}#loading-retry:focus-visible{outline:2px solid #e82127;outline-offset:4px}
     #loading [hidden]{display:none!important}.loading-noscript{margin:20px 0 0;font-size:12px;color:#aeb7c3;line-height:1.6}
+    #loading.choosing-mode .loading-card{width:min(420px,calc(100vw - 40px))}
+    #loading.choosing-mode .loader-brand{font-size:12px;letter-spacing:3px;margin-bottom:26px;color:#b0bccb}
+    .mode-title{font-size:29px;font-weight:400;letter-spacing:-.6px;margin:0 0 9px}
+    .mode-availability{font-size:11px;color:#9bd9c8;margin:0 0 26px}
+    .mode-choices{display:grid;gap:10px;text-align:left}
+    .mode-choice{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;box-sizing:border-box;padding:18px 20px;border:1px solid #b3c3d32b;border-radius:6px;background:#17202bd9;color:#eef4fa;font:inherit;cursor:pointer;text-align:left;transition:background .15s,border-color .15s}
+    .mode-choice:hover{background:#223040;border-color:#b3c3d36b}.mode-choice:focus-visible{outline:2px solid #e82127;outline-offset:3px}
+    .mode-choice strong{display:block;font-size:16px;font-weight:500}.mode-choice small{display:block;margin-top:6px;font-size:11px;color:#b1bdcb;line-height:1.5}
+    .mode-choice>span:last-child{font-size:20px;color:#aabacb}.mode-choice-multi{border-color:#82d7c34a;background:linear-gradient(110deg,#18312e,#17232b)}
+    .mode-note{margin:18px 0 0;font-size:11px;line-height:1.6;color:#8f9cab}
+    @media(max-height:540px){#loading.choosing-mode .loader-brand{margin-bottom:14px}.mode-availability{margin-bottom:16px}.mode-choice{padding:12px 16px}#loading.choosing-mode .loading-disclaimer{display:none}}
     @media(prefers-reduced-motion:reduce){#loading,#loading-fill{transition:none}}
   </style>
-  <script type="module" crossorigin src="./assets/index-CdaoDJLp.js"></script>
+  <script type="module" crossorigin src="./assets/index-XS4df2O0.js"></script>
 </head>
 <body class="driving">
   <div id="game" inert aria-hidden="true">
@@ -198,8 +209,12 @@
         </div>
         <button id="mobile-reset" type="button" aria-label="Reset car" title="Reset car">↺</button>
       </nav>
-      <div id="mobile-camera" class="mobile-camera"></div>
       <canvas id="minimap" width="260" height="150" aria-label="Road minimap and route line"></canvas>
+      <aside id="multiplayer-status" class="multiplayer-status" aria-label="Multiplayer session" hidden>
+        <span id="multiplayer-count" role="status" aria-live="polite"></span>
+        <button id="multiplayer-leave" type="button" aria-label="Leave multiplayer and continue in single player">Leave</button>
+      </aside>
+      <div id="mobile-camera" class="mobile-camera"></div>
     </div>
     <div class="speedometer" aria-label="Vehicle speed"><span id="speed">0</span><div class="speed-unit"><span id="gear">D</span><button id="speed-unit" aria-label="Speed unit: kilometres per hour. Switch to miles per hour" title="Switch to miles per hour">KM/H</button></div></div>
     <div class="suction">
@@ -218,7 +233,7 @@
     <div class="radio-player">
       <button id="radio-expand" class="radio-now-playing" type="button" aria-expanded="false" aria-controls="radio-presets" aria-label="Choose radio station"><span class="radio-meta"><span id="radio-frequency">104.2 FM</span><span class="radio-live"><i aria-hidden="true"></i><span id="radio-status">READY</span></span></span><span id="radio-station">NEON FM</span><span id="radio-track">Night Circuit</span><svg class="radio-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m5 9 3-3 3 3"/></svg></button>
       <button id="radio-power" class="radio-power" type="button" aria-pressed="true" aria-label="Turn radio off"><svg class="radio-power-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v9m-5-6a8 8 0 1 0 10 0"/></svg><svg class="radio-mute-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path class="radio-sound-waves" d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/><path class="radio-muted-mark" d="m16 9 6 6m0-6-6 6"/></svg></button>
-      <button id="radio-next" class="radio-next" type="button" aria-label="Next radio station"><span id="radio-next-station">NEON FM</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 5 10 7-10 7zM19 5v14"/></svg></button>
+      <button id="radio-next" class="radio-next" type="button" aria-label="Next radio station"><span class="radio-next-copy"><span id="radio-next-station">NEON FM</span><span class="radio-equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 5 10 7-10 7zM19 5v14"/></svg></button>
     </div>
     <div class="radio-track-progress" aria-hidden="true"><span id="radio-progress"></span></div>
   </aside>
@@ -246,7 +261,16 @@
       <div id="loading-progress" class="loading-track" role="progressbar" aria-label="Loading Flying car simulator" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="Loading simulator">
         <span id="loading-fill"></span>
       </div>
-      <div class="loading-detail"><span id="loading-status" role="status" aria-live="polite">Loading simulator</span><span id="loading-percent" aria-hidden="true">0%</span></div>
+      <div id="loading-detail" class="loading-detail"><span id="loading-status" role="status" aria-live="polite">Loading simulator</span><span id="loading-percent" aria-hidden="true">0%</span></div>
+      <section id="loading-modes" aria-labelledby="mode-title" hidden>
+        <h1 id="mode-title" class="mode-title">How will you drive?</h1>
+        <p id="mode-availability" class="mode-availability"></p>
+        <div class="mode-choices">
+          <button id="mode-single" class="mode-choice" type="button"><span><strong>Single player</strong><small>Your road. Your pace.</small></span><span aria-hidden="true">→</span></button>
+          <button id="mode-multiplayer" class="mode-choice mode-choice-multi" type="button"><span><strong>Multiplayer</strong><small>Share the road with other drivers.</small></span><span aria-hidden="true">↗</span></button>
+        </div>
+        <p class="mode-note">Player cars pass through each other.<br>Challenges and traffic stay personal.</p>
+      </section>
       <p class="loading-disclaimer">A game about the future.<br>Any resemblance to the present is&nbsp;intentional.</p>
       <a id="loading-retry" href="" hidden>Retry</a>
       <noscript><p class="loading-noscript">Play Flying car simulator free in your browser. Drive, boost and fly through stunt courses, highways and a neon city with keyboard, controller or mobile touch controls. Enable JavaScript to start driving.</p></noscript>
