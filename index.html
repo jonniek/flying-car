@@ -25,7 +25,7 @@
     #loading [hidden]{display:none!important}.loading-noscript{margin:20px 0 0;font-size:12px;color:#aeb7c3;line-height:1.6}
     @media(prefers-reduced-motion:reduce){#loading,#loading-fill{transition:none}}
   </style>
-  <script type="module" crossorigin src="./assets/index-B_ITT6i7.js"></script>
+  <script type="module" crossorigin src="./assets/index-CHGaNAzE.js"></script>
 </head>
 <body class="driving">
   <div id="game" inert aria-hidden="true">
@@ -35,9 +35,7 @@
     <div class="brand"><span>Flying car</span><small id="current-area">Proving grounds</small></div>
     <nav class="top-actions" aria-label="Driving tools">
       <button id="sound" class="sound-button" title="Toggle sound" aria-label="Toggle sound">Sound <span id="sound-state">OFF</span></button>
-      <button id="front-view" class="icon-button" title="Front view · drag to orbit (F)" aria-label="Front view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 10 2-5h10l2 5M4 10h16v8H4zM7 18v2m10-2v2M7 14h2m6 0h2"/></svg></button>
       <button id="camera-view" class="icon-button" title="Cycle camera (C)" aria-label="Cycle camera"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h5l2-3h4l2 3h5v13H3z"/><circle cx="12" cy="13" r="4"/></svg></button>
-      <button id="help" class="icon-button" title="Controls (H)" aria-label="Toggle control hints" aria-expanded="false">?</button>
     </nav>
   </header>
   <aside class="quick-controls" aria-label="Driving shortcuts">
@@ -59,14 +57,6 @@
       <p><span><kbd>F</kbd> Front</span><span><kbd>C</kbd> Camera</span><span><kbd>R</kbd> Reset</span></p>
     </div>
   </aside>
-  <nav class="mobile-tools" aria-label="Touch driving tools">
-    <select id="mobile-location" aria-label="Drive at location">
-      <option value="demo">Reveal</option><option value="circuit">Test track</option><option value="lineup">Tesla lineup</option>
-      <option value="transfer">Transfer</option><option value="inversion">Loop</option><option value="canyon">Canyon</option>
-      <option value="highway">Highway</option><option value="pad">Starship</option><option value="city">City</option><option value="flyover">Flyover</option>
-    </select>
-    <button id="mobile-reset" type="button" aria-label="Reset car" title="Reset car">↺</button>
-  </nav>
   <aside id="quest-log" class="quest-log" aria-label="Driving challenges">
     <div class="quest-run-heading"><time id="run-time" aria-label="Run time">00:00</time><span id="run-progress" aria-label="Challenges completed">0 / 10</span><button id="run-results" type="button" aria-label="View run results" title="Results" hidden>↗</button><button id="mobile-next-quest" type="button" aria-label="Next challenge" title="Next challenge">›</button></div>
     <small id="run-time-note" class="run-time-note" hidden>Resumed time</small>
@@ -74,32 +64,47 @@
     <div class="quest-cards">
       <button id="quest-card-0" class="quest-card" type="button" aria-pressed="false" hidden>
         <span class="quest-card-heading"><span id="quest-card-0-title"></span><span id="quest-card-0-marker" class="quest-card-marker" aria-hidden="true"></span></span>
-        <span class="quest-card-summary"><span id="quest-card-0-next" class="quest-next-step"></span><span class="quest-steps" aria-hidden="true"><span id="quest-card-0-step-0"></span><span id="quest-card-0-step-1"></span><span id="quest-card-0-step-2"></span><span id="quest-card-0-step-3"></span><span id="quest-card-0-step-4"></span><span id="quest-card-0-step-5"></span></span></span>
+        <span class="quest-card-summary"><span id="quest-card-0-next" class="quest-next-step"></span><span class="quest-steps" aria-hidden="true"><span id="quest-card-0-step-0"></span><span id="quest-card-0-step-1"></span><span id="quest-card-0-step-2"></span><span id="quest-card-0-step-3"></span><span id="quest-card-0-step-4"></span></span></span>
         <span id="quest-card-0-detail" class="quest-card-detail" hidden><span id="quest-card-0-hint" class="quest-hint"></span><span id="quest-card-0-feedback" class="quest-feedback" hidden></span></span>
         <span class="quest-progress" aria-hidden="true"><span id="quest-card-0-progress"></span></span>
       </button>
       <button id="quest-card-1" class="quest-card" type="button" aria-pressed="false" hidden>
         <span class="quest-card-heading"><span id="quest-card-1-title"></span><span id="quest-card-1-marker" class="quest-card-marker" aria-hidden="true"></span></span>
-        <span class="quest-card-summary"><span id="quest-card-1-next" class="quest-next-step"></span><span class="quest-steps" aria-hidden="true"><span id="quest-card-1-step-0"></span><span id="quest-card-1-step-1"></span><span id="quest-card-1-step-2"></span><span id="quest-card-1-step-3"></span><span id="quest-card-1-step-4"></span><span id="quest-card-1-step-5"></span></span></span>
+        <span class="quest-card-summary"><span id="quest-card-1-next" class="quest-next-step"></span><span class="quest-steps" aria-hidden="true"><span id="quest-card-1-step-0"></span><span id="quest-card-1-step-1"></span><span id="quest-card-1-step-2"></span><span id="quest-card-1-step-3"></span><span id="quest-card-1-step-4"></span></span></span>
         <span id="quest-card-1-detail" class="quest-card-detail" hidden><span id="quest-card-1-hint" class="quest-hint"></span><span id="quest-card-1-feedback" class="quest-feedback" hidden></span></span>
         <span class="quest-progress" aria-hidden="true"><span id="quest-card-1-progress"></span></span>
       </button>
       <button id="quest-card-2" class="quest-card" type="button" aria-pressed="false" hidden>
         <span class="quest-card-heading"><span id="quest-card-2-title"></span><span id="quest-card-2-marker" class="quest-card-marker" aria-hidden="true"></span></span>
-        <span class="quest-card-summary"><span id="quest-card-2-next" class="quest-next-step"></span><span class="quest-steps" aria-hidden="true"><span id="quest-card-2-step-0"></span><span id="quest-card-2-step-1"></span><span id="quest-card-2-step-2"></span><span id="quest-card-2-step-3"></span><span id="quest-card-2-step-4"></span><span id="quest-card-2-step-5"></span></span></span>
+        <span class="quest-card-summary"><span id="quest-card-2-next" class="quest-next-step"></span><span class="quest-steps" aria-hidden="true"><span id="quest-card-2-step-0"></span><span id="quest-card-2-step-1"></span><span id="quest-card-2-step-2"></span><span id="quest-card-2-step-3"></span><span id="quest-card-2-step-4"></span></span></span>
         <span id="quest-card-2-detail" class="quest-card-detail" hidden><span id="quest-card-2-hint" class="quest-hint"></span><span id="quest-card-2-feedback" class="quest-feedback" hidden></span></span>
         <span class="quest-progress" aria-hidden="true"><span id="quest-card-2-progress"></span></span>
       </button>
       <button id="quest-card-3" class="quest-card" type="button" aria-pressed="false" hidden>
         <span class="quest-card-heading"><span id="quest-card-3-title"></span><span id="quest-card-3-marker" class="quest-card-marker" aria-hidden="true"></span></span>
-        <span class="quest-card-summary"><span id="quest-card-3-next" class="quest-next-step"></span><span class="quest-steps" aria-hidden="true"><span id="quest-card-3-step-0"></span><span id="quest-card-3-step-1"></span><span id="quest-card-3-step-2"></span><span id="quest-card-3-step-3"></span><span id="quest-card-3-step-4"></span><span id="quest-card-3-step-5"></span></span></span>
+        <span class="quest-card-summary"><span id="quest-card-3-next" class="quest-next-step"></span><span class="quest-steps" aria-hidden="true"><span id="quest-card-3-step-0"></span><span id="quest-card-3-step-1"></span><span id="quest-card-3-step-2"></span><span id="quest-card-3-step-3"></span><span id="quest-card-3-step-4"></span></span></span>
         <span id="quest-card-3-detail" class="quest-card-detail" hidden><span id="quest-card-3-hint" class="quest-hint"></span><span id="quest-card-3-feedback" class="quest-feedback" hidden></span></span>
         <span class="quest-progress" aria-hidden="true"><span id="quest-card-3-progress"></span></span>
       </button>
     </div>
   </aside>
   <aside id="controls-hint" class="controls-hint hidden" aria-label="Control hints">
-    <div class="touch-help"><p>Left: steer · In air: move sideways &amp; forward/back.</p><p>Tap Yaw to rotate instead of moving sideways.</p><p>Right: gas / brake · In air: roll &amp; pitch.</p><p>Hold Jump to rise. Boost follows the nose.</p><p>Grip cycles 0 / 50 / 100%. Drag the view to look around.</p><button id="mobile-demo" type="button">Watch reveal demo</button></div>
+    <div class="touch-help">
+      <nav class="mobile-tools" aria-label="Touch driving tools">
+    <select id="mobile-location" aria-label="Drive at location">
+      <option value="demo">Reveal</option><option value="circuit">Test track</option><option value="lineup">Tesla lineup</option>
+      <option value="transfer">Transfer</option><option value="inversion">Loop</option><option value="canyon">Canyon</option>
+      <option value="highway">Highway</option><option value="pad">Starship</option><option value="city">City</option><option value="flyover">Flyover</option>
+    </select>
+    <button id="mobile-reset" type="button" aria-label="Reset car" title="Reset car">↺</button>
+  </nav>
+      <div id="mobile-options-audio" class="mobile-options-audio" aria-label="Audio controls"></div>
+      <p>Left: steer. In air: move, or switch to Yaw.</p>
+      <p>Right: gas / brake. In air: roll / pitch.</p>
+      <p>Hold Jump to lift. Boost follows the nose.</p>
+      <p>Slide Suction to adjust. Drag the view to orbit.</p>
+      <button id="mobile-demo" type="button">Watch reveal demo</button>
+    </div>
     <p><kbd>W S</kbd> Pedals <kbd>A D</kbd> Steer <kbd>Q E</kbd> Suction</p>
     <p><kbd>SPACE</kbd> Jump / hold to lift <kbd>SHIFT</kbd> Boost</p>
     <p>In air: <kbd>W S</kbd> Forward / back <kbd>A D</kbd> Sideways</p>
@@ -111,8 +116,11 @@
   <div id="touch-controls" class="touch-controls" aria-label="Touch driving controls" hidden>
     <div class="touch-left">
       <div class="touch-left-tools">
-        <button id="touch-suction" type="button" aria-label="Change suction power">Grip <span id="touch-suction-value">0%</span></button>
-        <button id="touch-air-mode" type="button" aria-label="Yaw mode off. Switch left stick to yaw" aria-pressed="false" hidden disabled>Yaw</button>
+        <div class="touch-suction-control">
+          <label for="touch-suction">Suction <span id="touch-suction-value">0%</span></label>
+          <input id="touch-suction" type="range" min="0" max="100" step="1" value="0" aria-label="Suction" aria-valuetext="0 percent" />
+        </div>
+        <button id="touch-air-mode" type="button" aria-label="Yaw mode off. Switch left stick to yaw" aria-pressed="false">Yaw</button>
       </div>
       <div id="touch-steer" class="touch-stick" role="group" tabindex="0" aria-label="Steering stick. In air, sideways and forward or backward movement.">
         <span class="touch-axis touch-axis-x" aria-hidden="true"></span><span class="touch-axis touch-axis-y" aria-hidden="true"></span>
@@ -133,10 +141,6 @@
     </div>
   </div>
   <div id="hud">
-    <div id="air-status" class="air-status hidden">
-      <div><span id="air-mode">Manual flight</span><span class="altitude"><b id="altitude">0</b> <small>m</small></span></div>
-      <small id="air-instruction">↑ ↓ Pitch · ← → Roll · Q E Yaw</small>
-    </div>
     <div class="bottom-left">
       <canvas id="minimap" width="260" height="150" aria-label="Road minimap and route line"></canvas></div>
     <div class="speedometer" aria-label="Vehicle speed"><span id="speed">0</span><div class="speed-unit"><span id="gear">D</span><button id="speed-unit" aria-label="Speed unit: kilometres per hour. Switch to miles per hour" title="Switch to miles per hour">KM/H</button></div></div>
