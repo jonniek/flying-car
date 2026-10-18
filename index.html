@@ -64,7 +64,7 @@
     #loading [hidden]{display:none!important}.loading-noscript{margin:20px 0 0;font-size:12px;color:#aeb7c3;line-height:1.6}
     @media(prefers-reduced-motion:reduce){#loading,#loading-fill{transition:none}}
   </style>
-  <script type="module" crossorigin src="./assets/index-BwsTUFpb.js"></script>
+  <script type="module" crossorigin src="./assets/index-B86K15OM.js"></script>
 </head>
 <body class="driving">
   <div id="game" inert aria-hidden="true">
@@ -80,15 +80,15 @@
   <aside class="quick-controls" aria-label="Driving shortcuts">
     <nav class="location-shortcuts" aria-label="Go to location">
       <button data-zone="demo" title="Reveal ramp (1)"><kbd>1</kbd> Reveal</button>
-      <button data-zone="circuit" title="Test track (2)"><kbd>2</kbd> Track</button>
-      <button data-zone="lineup" title="Tesla lineup (3)"><kbd>3</kbd> Lineup</button>
-      <button data-zone="transfer" title="Parallel transfer (4)"><kbd>4</kbd> Transfer</button>
-      <button data-zone="inversion" title="Upside-down loop (5)"><kbd>5</kbd> Loop</button>
-      <button data-zone="canyon" title="Canyon jump (6)"><kbd>6</kbd> Canyon</button>
-      <button data-zone="highway" title="Highway (7)"><kbd>7</kbd> Highway</button>
-      <button data-zone="pad" title="Starship launch pad (8)"><kbd>8</kbd> Starship</button>
-      <button data-zone="city" title="Downtown (9)"><kbd>9</kbd> City</button>
-      <button data-zone="flyover" title="Stack flyover (0)"><kbd>0</kbd> Flyover</button>
+      <button data-zone="lineup" title="Tesla lineup (2)"><kbd>2</kbd> Lineup</button>
+      <button data-zone="inversion" title="Upside-down loop (3)"><kbd>3</kbd> Loop</button>
+      <button data-zone="city" title="Downtown (4)"><kbd>4</kbd> City</button>
+      <button data-zone="highway" title="Highway (5)"><kbd>5</kbd> Highway</button>
+      <button data-zone="pad" title="Starship launch pad (6)"><kbd>6</kbd> Starship</button>
+      <button data-zone="canyon" title="Canyon jump (7)"><kbd>7</kbd> Canyon</button>
+      <button data-zone="flyover" title="Stack flyover (8)"><kbd>8</kbd> Flyover</button>
+      <button data-zone="transfer" title="Parallel transfer (9)"><kbd>9</kbd> Transfer</button>
+      <button data-zone="circuit" title="Test track (0)"><kbd>0</kbd> Track</button>
     </nav>
     <div class="key-guide">
       <p><span><kbd>W/S</kbd> Pedals</span><span><kbd>A/D</kbd> Steer</span><span><kbd>Q/E</kbd> Suction / air yaw</span></p>
@@ -141,14 +141,6 @@
   </aside>
   <aside id="controls-hint" class="controls-hint hidden" aria-label="Control hints">
     <div class="touch-help">
-      <nav class="mobile-tools" aria-label="Touch driving tools">
-    <select id="mobile-location" aria-label="Drive at location">
-      <option value="demo">Reveal</option><option value="circuit">Test track</option><option value="lineup">Tesla lineup</option>
-      <option value="transfer">Transfer</option><option value="inversion">Loop</option><option value="canyon">Canyon</option>
-      <option value="highway">Highway</option><option value="pad">Starship</option><option value="city">City</option><option value="flyover">Flyover</option>
-    </select>
-    <button id="mobile-reset" type="button" aria-label="Reset car" title="Reset car">↺</button>
-  </nav>
       <div id="mobile-options-audio" class="mobile-options-audio" aria-label="Audio controls"></div>
       <p>Left: steer. In air: move, or switch to Yaw.</p>
       <p>Right: gas / brake. In air: roll / pitch.</p>
@@ -162,7 +154,7 @@
     <p><kbd>↑ ↓</kbd> Pitch <kbd>← →</kbd> Roll <kbd>Q E</kbd> Yaw</p>
     <p><kbd>F</kbd> Front <kbd>C</kbd> Cameras · Drag / wheel to orbit</p>
     <p><kbd>1–0</kbd> Locations <kbd>M</kbd> Mute <kbd>T</kbd> Demo <kbd>R</kbd> Reset</p>
-    <small>1 Reveal · 2 Test track · 3 Lineup · 4 Transfer · 5 Inversion · 6 Canyon · 7 Highway · 8 Starship · 9 City · 0 Flyover</small>
+    <small>1 Reveal · 2 Lineup · 3 Loop · 4 City · 5 Highway · 6 Starship · 7 Canyon · 8 Flyover · 9 Transfer · 0 Track</small>
   </aside>
   <div id="touch-controls" class="touch-controls" aria-label="Touch driving controls" hidden>
     <div class="touch-left">
@@ -193,7 +185,19 @@
   </div>
   <div id="hud">
     <div class="bottom-left">
-      <canvas id="minimap" width="260" height="150" aria-label="Road minimap and route line"></canvas></div>
+      <nav class="mobile-tools" aria-label="Map location and reset">
+        <div class="mobile-location-picker">
+          <select id="mobile-location" aria-label="Current location. Choose a location to drive there">
+            <option id="mobile-current-location" value="" disabled hidden selected>Reveal</option>
+            <option value="demo">Reveal</option><option value="lineup">Tesla lineup</option><option value="inversion">Loop</option>
+            <option value="city">City</option><option value="highway">Highway</option><option value="pad">Starship</option>
+            <option value="canyon">Canyon</option><option value="flyover">Flyover</option><option value="transfer">Transfer</option><option value="circuit">Test track</option>
+          </select>
+        </div>
+        <button id="mobile-reset" type="button" aria-label="Reset car" title="Reset car">↺</button>
+      </nav>
+      <canvas id="minimap" width="260" height="150" aria-label="Road minimap and route line"></canvas>
+    </div>
     <div class="speedometer" aria-label="Vehicle speed"><span id="speed">0</span><div class="speed-unit"><span id="gear">D</span><button id="speed-unit" aria-label="Speed unit: kilometres per hour. Switch to miles per hour" title="Switch to miles per hour">KM/H</button></div></div>
     <div class="suction">
       <div class="suction-heading"><span>Suction</span><span><b id="suction-value">0</b><small>%</small></span></div>
