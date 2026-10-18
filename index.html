@@ -64,7 +64,7 @@
     #loading [hidden]{display:none!important}.loading-noscript{margin:20px 0 0;font-size:12px;color:#aeb7c3;line-height:1.6}
     @media(prefers-reduced-motion:reduce){#loading,#loading-fill{transition:none}}
   </style>
-  <script type="module" crossorigin src="./assets/index-B86K15OM.js"></script>
+  <script type="module" crossorigin src="./assets/index-BU4tic9a.js"></script>
 </head>
 <body class="driving">
   <div id="game" inert aria-hidden="true">
@@ -187,8 +187,9 @@
     <div class="bottom-left">
       <nav class="mobile-tools" aria-label="Map location and reset">
         <div class="mobile-location-picker">
-          <select id="mobile-location" aria-label="Current location. Choose a location to drive there">
-            <option id="mobile-current-location" value="" disabled hidden selected>Reveal</option>
+          <span id="mobile-current-location">Reveal</span>
+          <select id="mobile-location" aria-label="Choose a location to drive there" aria-describedby="mobile-current-location">
+            <option value="" disabled hidden selected>Choose location</option>
             <option value="demo">Reveal</option><option value="lineup">Tesla lineup</option><option value="inversion">Loop</option>
             <option value="city">City</option><option value="highway">Highway</option><option value="pad">Starship</option>
             <option value="canyon">Canyon</option><option value="flyover">Flyover</option><option value="transfer">Transfer</option><option value="circuit">Test track</option>
@@ -229,9 +230,9 @@
     <span class="finish-kicker">FLYING CAR</span>
     <div class="finish-mark" aria-hidden="true">✓</div>
     <h2 id="run-finish-title">All clear.</h2>
-    <p id="finish-progress">10 / 10 challenges</p>
+    <p id="finish-progress">All challenges</p>
     <div class="finish-time"><strong id="finish-time"></strong><span id="finish-time-label">Run time</span></div>
-    <div class="finish-stats"><div><b id="finish-speed"></b><span id="finish-speed-unit">Top speed · km/h</span></div><div><b id="finish-tricks"></b><span>Clean tricks</span></div></div>
+    <div class="finish-stats"><div><b id="finish-speed"></b><span id="finish-speed-unit">Top speed · km/h</span></div><div><b id="finish-airborne"></b><span>Longest airborne</span></div></div>
     <a id="finish-share" class="finish-share" target="_blank" rel="noopener noreferrer">Share score on X ↗</a>
     <div class="finish-actions"><button id="finish-drive" type="button" autofocus>Keep driving</button><button id="finish-restart" type="button">New run</button></div>
   </dialog>
