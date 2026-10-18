@@ -64,7 +64,7 @@
     #loading [hidden]{display:none!important}.loading-noscript{margin:20px 0 0;font-size:12px;color:#aeb7c3;line-height:1.6}
     @media(prefers-reduced-motion:reduce){#loading,#loading-fill{transition:none}}
   </style>
-  <script type="module" crossorigin src="./assets/index-i2C2IBr-.js"></script>
+  <script type="module" crossorigin src="./assets/index-BwsTUFpb.js"></script>
 </head>
 <body class="driving">
   <div id="game" inert aria-hidden="true">
@@ -101,30 +101,42 @@
     <small id="run-time-note" class="run-time-note" hidden>Resumed time</small>
     <div id="quest-heading" class="quest-heading">CHALLENGES</div>
     <div class="quest-cards">
-      <button id="quest-card-0" class="quest-card" type="button" aria-pressed="false" hidden>
-        <span class="quest-card-heading"><span id="quest-card-0-title"></span><span id="quest-card-0-marker" class="quest-card-marker" aria-hidden="true"></span></span>
-        <span class="quest-card-summary"><span id="quest-card-0-next" class="quest-next-step"></span><span class="quest-steps" aria-hidden="true"><span id="quest-card-0-step-0"></span><span id="quest-card-0-step-1"></span><span id="quest-card-0-step-2"></span><span id="quest-card-0-step-3"></span><span id="quest-card-0-step-4"></span></span></span>
-        <span id="quest-card-0-detail" class="quest-card-detail" hidden><span id="quest-card-0-hint" class="quest-hint"></span><span id="quest-card-0-feedback" class="quest-feedback" hidden></span></span>
-        <span class="quest-progress" aria-hidden="true"><span id="quest-card-0-progress"></span></span>
-      </button>
-      <button id="quest-card-1" class="quest-card" type="button" aria-pressed="false" hidden>
-        <span class="quest-card-heading"><span id="quest-card-1-title"></span><span id="quest-card-1-marker" class="quest-card-marker" aria-hidden="true"></span></span>
-        <span class="quest-card-summary"><span id="quest-card-1-next" class="quest-next-step"></span><span class="quest-steps" aria-hidden="true"><span id="quest-card-1-step-0"></span><span id="quest-card-1-step-1"></span><span id="quest-card-1-step-2"></span><span id="quest-card-1-step-3"></span><span id="quest-card-1-step-4"></span></span></span>
-        <span id="quest-card-1-detail" class="quest-card-detail" hidden><span id="quest-card-1-hint" class="quest-hint"></span><span id="quest-card-1-feedback" class="quest-feedback" hidden></span></span>
-        <span class="quest-progress" aria-hidden="true"><span id="quest-card-1-progress"></span></span>
-      </button>
-      <button id="quest-card-2" class="quest-card" type="button" aria-pressed="false" hidden>
-        <span class="quest-card-heading"><span id="quest-card-2-title"></span><span id="quest-card-2-marker" class="quest-card-marker" aria-hidden="true"></span></span>
-        <span class="quest-card-summary"><span id="quest-card-2-next" class="quest-next-step"></span><span class="quest-steps" aria-hidden="true"><span id="quest-card-2-step-0"></span><span id="quest-card-2-step-1"></span><span id="quest-card-2-step-2"></span><span id="quest-card-2-step-3"></span><span id="quest-card-2-step-4"></span></span></span>
-        <span id="quest-card-2-detail" class="quest-card-detail" hidden><span id="quest-card-2-hint" class="quest-hint"></span><span id="quest-card-2-feedback" class="quest-feedback" hidden></span></span>
-        <span class="quest-progress" aria-hidden="true"><span id="quest-card-2-progress"></span></span>
-      </button>
-      <button id="quest-card-3" class="quest-card" type="button" aria-pressed="false" hidden>
-        <span class="quest-card-heading"><span id="quest-card-3-title"></span><span id="quest-card-3-marker" class="quest-card-marker" aria-hidden="true"></span></span>
-        <span class="quest-card-summary"><span id="quest-card-3-next" class="quest-next-step"></span><span class="quest-steps" aria-hidden="true"><span id="quest-card-3-step-0"></span><span id="quest-card-3-step-1"></span><span id="quest-card-3-step-2"></span><span id="quest-card-3-step-3"></span><span id="quest-card-3-step-4"></span></span></span>
-        <span id="quest-card-3-detail" class="quest-card-detail" hidden><span id="quest-card-3-hint" class="quest-hint"></span><span id="quest-card-3-feedback" class="quest-feedback" hidden></span></span>
-        <span class="quest-progress" aria-hidden="true"><span id="quest-card-3-progress"></span></span>
-      </button>
+      <div id="quest-card-0-slot" class="quest-slot" hidden>
+        <button id="quest-card-0" class="quest-card" type="button" aria-pressed="false" hidden>
+          <span class="quest-card-heading"><span id="quest-card-0-title"></span></span>
+          <span class="quest-card-summary"><span id="quest-card-0-next" class="quest-next-step"></span><span class="quest-steps" aria-hidden="true"><span id="quest-card-0-step-0"></span><span id="quest-card-0-step-1"></span><span id="quest-card-0-step-2"></span><span id="quest-card-0-step-3"></span><span id="quest-card-0-step-4"></span></span></span>
+          <span id="quest-card-0-detail" class="quest-card-detail" hidden><span id="quest-card-0-hint" class="quest-hint"></span><span id="quest-card-0-feedback" class="quest-feedback" hidden></span></span>
+          <span class="quest-progress" aria-hidden="true"><span id="quest-card-0-progress"></span></span>
+        </button>
+        <button id="quest-card-0-postpone" class="quest-postpone" type="button" aria-label="Move challenge to end" title="Move to end">×</button>
+      </div>
+      <div id="quest-card-1-slot" class="quest-slot" hidden>
+        <button id="quest-card-1" class="quest-card" type="button" aria-pressed="false" hidden>
+          <span class="quest-card-heading"><span id="quest-card-1-title"></span></span>
+          <span class="quest-card-summary"><span id="quest-card-1-next" class="quest-next-step"></span><span class="quest-steps" aria-hidden="true"><span id="quest-card-1-step-0"></span><span id="quest-card-1-step-1"></span><span id="quest-card-1-step-2"></span><span id="quest-card-1-step-3"></span><span id="quest-card-1-step-4"></span></span></span>
+          <span id="quest-card-1-detail" class="quest-card-detail" hidden><span id="quest-card-1-hint" class="quest-hint"></span><span id="quest-card-1-feedback" class="quest-feedback" hidden></span></span>
+          <span class="quest-progress" aria-hidden="true"><span id="quest-card-1-progress"></span></span>
+        </button>
+        <button id="quest-card-1-postpone" class="quest-postpone" type="button" aria-label="Move challenge to end" title="Move to end">×</button>
+      </div>
+      <div id="quest-card-2-slot" class="quest-slot" hidden>
+        <button id="quest-card-2" class="quest-card" type="button" aria-pressed="false" hidden>
+          <span class="quest-card-heading"><span id="quest-card-2-title"></span></span>
+          <span class="quest-card-summary"><span id="quest-card-2-next" class="quest-next-step"></span><span class="quest-steps" aria-hidden="true"><span id="quest-card-2-step-0"></span><span id="quest-card-2-step-1"></span><span id="quest-card-2-step-2"></span><span id="quest-card-2-step-3"></span><span id="quest-card-2-step-4"></span></span></span>
+          <span id="quest-card-2-detail" class="quest-card-detail" hidden><span id="quest-card-2-hint" class="quest-hint"></span><span id="quest-card-2-feedback" class="quest-feedback" hidden></span></span>
+          <span class="quest-progress" aria-hidden="true"><span id="quest-card-2-progress"></span></span>
+        </button>
+        <button id="quest-card-2-postpone" class="quest-postpone" type="button" aria-label="Move challenge to end" title="Move to end">×</button>
+      </div>
+      <div id="quest-card-3-slot" class="quest-slot" hidden>
+        <button id="quest-card-3" class="quest-card" type="button" aria-pressed="false" hidden>
+          <span class="quest-card-heading"><span id="quest-card-3-title"></span></span>
+          <span class="quest-card-summary"><span id="quest-card-3-next" class="quest-next-step"></span><span class="quest-steps" aria-hidden="true"><span id="quest-card-3-step-0"></span><span id="quest-card-3-step-1"></span><span id="quest-card-3-step-2"></span><span id="quest-card-3-step-3"></span><span id="quest-card-3-step-4"></span></span></span>
+          <span id="quest-card-3-detail" class="quest-card-detail" hidden><span id="quest-card-3-hint" class="quest-hint"></span><span id="quest-card-3-feedback" class="quest-feedback" hidden></span></span>
+          <span class="quest-progress" aria-hidden="true"><span id="quest-card-3-progress"></span></span>
+        </button>
+        <button id="quest-card-3-postpone" class="quest-postpone" type="button" aria-label="Move challenge to end" title="Move to end">×</button>
+      </div>
     </div>
   </aside>
   <aside id="controls-hint" class="controls-hint hidden" aria-label="Control hints">
