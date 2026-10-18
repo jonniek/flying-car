@@ -71,10 +71,12 @@
     .mode-choice{padding:17px 10px;border:1px solid #ffffff40;border-radius:6px;background:#121a23d9;color:#eef4fa;font:500 15px Arial,Helvetica,sans-serif;cursor:pointer;transition:background .15s,border-color .15s}
     .mode-choice:hover{background:#263442;border-color:#ffffff90}.mode-choice:focus-visible{outline:2px solid #e82127;outline-offset:4px}
     .mode-choice-multi{background:#253c3ad9;border-color:#9cc9bd80}
+    .mode-choice:disabled{opacity:.45;cursor:default}.mode-choice:disabled:hover{background:#253c3ad9;border-color:#9cc9bd80}
+    #mode-availability{display:block;margin-top:5px;font-size:10px;font-weight:400}
     @media(max-height:440px){#loading.choosing-mode .loading-card{margin-bottom:18px}.mode-choice{padding:12px 10px}}
     @media(prefers-reduced-motion:reduce){#loading,#loading-fill{transition:none}}
   </style>
-  <script type="module" crossorigin src="./assets/index-C0OG3cjf.js"></script>
+  <script type="module" crossorigin src="./assets/index-CU61Q-7J.js"></script>
 </head>
 <body class="driving">
   <div id="game" inert aria-hidden="true">
@@ -267,7 +269,7 @@
       <section id="loading-modes" aria-label="Play mode" hidden>
         <div class="mode-choices">
           <button id="mode-single" class="mode-choice" type="button">Single player</button>
-          <button id="mode-multiplayer" class="mode-choice mode-choice-multi" type="button">Multiplayer</button>
+          <button id="mode-multiplayer" class="mode-choice mode-choice-multi" type="button">Multiplayer<small id="mode-availability" hidden>Unavailable</small></button>
         </div>
       </section>
       <p class="loading-disclaimer">A game about the future.<br>Any resemblance to the present is&nbsp;intentional.</p>
