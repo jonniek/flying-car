@@ -64,7 +64,7 @@
     #loading [hidden]{display:none!important}.loading-noscript{margin:20px 0 0;font-size:12px;color:#aeb7c3;line-height:1.6}
     @media(prefers-reduced-motion:reduce){#loading,#loading-fill{transition:none}}
   </style>
-  <script type="module" crossorigin src="./assets/index-BU4tic9a.js"></script>
+  <script type="module" crossorigin src="./assets/index-CdaoDJLp.js"></script>
 </head>
 <body class="driving">
   <div id="game" inert aria-hidden="true">
@@ -185,6 +185,7 @@
   </div>
   <div id="hud">
     <div class="bottom-left">
+      <div id="mobile-radio" class="mobile-radio"></div>
       <nav class="mobile-tools" aria-label="Map location and reset">
         <div class="mobile-location-picker">
           <span id="mobile-current-location">Reveal</span>
@@ -197,6 +198,7 @@
         </div>
         <button id="mobile-reset" type="button" aria-label="Reset car" title="Reset car">↺</button>
       </nav>
+      <div id="mobile-camera" class="mobile-camera"></div>
       <canvas id="minimap" width="260" height="150" aria-label="Road minimap and route line"></canvas>
     </div>
     <div class="speedometer" aria-label="Vehicle speed"><span id="speed">0</span><div class="speed-unit"><span id="gear">D</span><button id="speed-unit" aria-label="Speed unit: kilometres per hour. Switch to miles per hour" title="Switch to miles per hour">KM/H</button></div></div>
@@ -215,7 +217,8 @@
     </div>
     <div class="radio-player">
       <button id="radio-expand" class="radio-now-playing" type="button" aria-expanded="false" aria-controls="radio-presets" aria-label="Choose radio station"><span class="radio-meta"><span id="radio-frequency">104.2 FM</span><span class="radio-live"><i aria-hidden="true"></i><span id="radio-status">READY</span></span></span><span id="radio-station">NEON FM</span><span id="radio-track">Night Circuit</span><svg class="radio-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m5 9 3-3 3 3"/></svg></button>
-      <button id="radio-power" class="radio-power" type="button" aria-pressed="true" aria-label="Turn radio off"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v9m-5-6a8 8 0 1 0 10 0"/></svg></button>
+      <button id="radio-power" class="radio-power" type="button" aria-pressed="true" aria-label="Turn radio off"><svg class="radio-power-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v9m-5-6a8 8 0 1 0 10 0"/></svg><svg class="radio-mute-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path class="radio-sound-waves" d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/><path class="radio-muted-mark" d="m16 9 6 6m0-6-6 6"/></svg></button>
+      <button id="radio-next" class="radio-next" type="button" aria-label="Next radio station"><span id="radio-next-station">NEON FM</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 5 10 7-10 7zM19 5v14"/></svg></button>
     </div>
     <div class="radio-track-progress" aria-hidden="true"><span id="radio-progress"></span></div>
   </aside>
