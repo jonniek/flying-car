@@ -74,7 +74,7 @@
     @media(max-height:440px){#loading.choosing-mode .loading-card{margin-bottom:18px}.mode-choice{padding:12px 10px}}
     @media(prefers-reduced-motion:reduce){#loading,#loading-fill{transition:none}}
   </style>
-  <script type="module" crossorigin src="./assets/index-CneD-w5d.js"></script>
+  <script type="module" crossorigin src="./assets/index-C0OG3cjf.js"></script>
 </head>
 <body class="driving">
   <div id="game" inert aria-hidden="true">
@@ -106,6 +106,7 @@
       <p><span><kbd>F</kbd> Front</span><span><kbd>C</kbd> Camera</span><span><kbd>R</kbd> Reset</span></p>
     </div>
   </aside>
+  <div class="quest-panel">
   <aside id="quest-log" class="quest-log" aria-label="Driving challenges">
     <div class="quest-run-heading"><time id="run-time" aria-label="Run time">00:00</time><span id="run-progress" aria-label="Challenges completed">0 / 10</span><button id="run-results" type="button" aria-label="View run results" title="Results" hidden>↗</button><button id="mobile-next-quest" type="button" aria-label="Next challenge" title="Next challenge">›</button></div>
     <small id="run-time-note" class="run-time-note" hidden>Resumed time</small>
@@ -149,6 +150,12 @@
       </div>
     </div>
   </aside>
+  <aside id="multiplayer-status" class="multiplayer-status" aria-label="Multiplayer session" hidden>
+    <span id="multiplayer-count" hidden>Multiplayer</span>
+    <button id="multiplayer-join" type="button" hidden>Join multiplayer</button>
+    <button id="multiplayer-leave" type="button" aria-label="Leave multiplayer and continue in single player" hidden>Leave</button>
+  </aside>
+  </div>
   <aside id="controls-hint" class="controls-hint hidden" aria-label="Control hints">
     <div class="touch-help">
       <div id="mobile-options-audio" class="mobile-options-audio" aria-label="Audio controls"></div>
@@ -209,10 +216,6 @@
         <button id="mobile-reset" type="button" aria-label="Reset car" title="Reset car">↺</button>
       </nav>
       <canvas id="minimap" width="260" height="150" aria-label="Road minimap and route line"></canvas>
-      <aside id="multiplayer-status" class="multiplayer-status" aria-label="Multiplayer session" hidden>
-        <span id="multiplayer-count">Multiplayer</span>
-        <button id="multiplayer-leave" type="button" aria-label="Leave multiplayer and continue in single player">Leave</button>
-      </aside>
       <div id="mobile-camera" class="mobile-camera"></div>
     </div>
     <div class="speedometer" aria-label="Vehicle speed"><span id="speed">0</span><div class="speed-unit"><span id="gear">D</span><button id="speed-unit" aria-label="Speed unit: kilometres per hour. Switch to miles per hour" title="Switch to miles per hour">KM/H</button></div></div>
