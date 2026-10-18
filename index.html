@@ -6,8 +6,46 @@
   <meta name="theme-color" content="#101113" />
   <meta name="color-scheme" content="dark" />
   <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-  <meta name="description" content="Flying car. An electric driving simulator with cold-gas flight and active suction." />
-  <title>Flying car</title>
+  <title>Flying car simulator</title>
+  <meta name="description" content="Play Flying car simulator free in your browser. Drive, boost and fly a sports car through stunt courses, highways and a neon city. Desktop and mobile controls." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <!-- These absolute URLs identify the public site, independently of Vite's asset base. -->
+  <link rel="canonical" href="https://jonniek.github.io/flying-car/" />
+  <link rel="sitemap" type="application/xml" href="./sitemap.xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Flying car simulator" />
+  <meta property="og:title" content="Flying car simulator" />
+  <meta property="og:description" content="Play Flying car simulator free in your browser. Drive, boost and fly a sports car through stunt courses, highways and a neon city. Desktop and mobile controls." />
+  <meta property="og:url" content="https://jonniek.github.io/flying-car/" />
+  <meta property="og:image" content="https://jonniek.github.io/flying-car/social/flying-car-simulator-v3.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="A banked white sports car beside Starship, with the city skyline behind it, firing downward and sideways jets and rear boost. Flying car simulator." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Flying car simulator" />
+  <meta name="twitter:description" content="Play Flying car simulator free in your browser. Drive, boost and fly a sports car through stunt courses, highways and a neon city. Desktop and mobile controls." />
+  <meta name="twitter:image" content="https://jonniek.github.io/flying-car/social/flying-car-simulator-v3.jpg" />
+  <meta name="twitter:image:alt" content="A banked white sports car beside Starship, with the city skyline behind it, firing downward and sideways jets and rear boost. Flying car simulator." />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoGame",
+      "name": "Flying car simulator",
+      "description": "Play Flying car simulator free in your browser. Drive, boost and fly a sports car through stunt courses, highways and a neon city. Desktop and mobile controls.",
+      "url": "https://jonniek.github.io/flying-car/",
+      "image": "https://jonniek.github.io/flying-car/social/flying-car-simulator-v3.jpg",
+      "inLanguage": "en",
+      "genre": ["Driving", "Flight simulation"],
+      "playMode": "SinglePlayer",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "Any",
+      "gamePlatform": "Web browser",
+      "isAccessibleForFree": true,
+      "browserRequirements": "Requires JavaScript and WebGL 2."
+    }
+  </script>
   <!-- Startup must be fully styled before any JavaScript or game CSS arrives. -->
   <style>
     html,body{margin:0;min-height:100%;background:#101113;color:#f5f5f5;font-family:Arial,Helvetica,sans-serif;overflow:hidden}
@@ -15,24 +53,25 @@
     #loading{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 42%,#141c28 0%,#101113 65%);transition:opacity .25s ease}
     #loading.is-ready{opacity:0;pointer-events:none}
     .loading-card{width:min(280px,calc(100vw - 64px));text-align:center}
-    .loader-brand{font-size:20px;font-weight:500;letter-spacing:7px;padding-left:7px;margin-bottom:40px}
+    .loader-brand{font-size:20px;line-height:1.4;font-weight:500;letter-spacing:3px;padding-left:3px;margin:0 0 40px}
     .loading-track{height:2px;background:#ffffff20;overflow:hidden;border-radius:2px}
     #loading-fill{display:block;height:100%;width:0;background:#e82127;box-shadow:0 0 12px #e8212755}
     .loading-detail{display:flex;justify-content:space-between;gap:16px;align-items:baseline;margin-top:13px;font-size:11px;line-height:1.5;color:#aeb7c3}
+    .loading-disclaimer{margin:28px 0 0;font-size:12px;line-height:1.6;color:#aeb7c3}
     #loading-status{text-align:left}#loading-percent{font-variant-numeric:tabular-nums;white-space:nowrap;color:#e8edf4}
     #loading-retry{display:inline-block;margin-top:26px;padding:9px 22px;border:1px solid #ffffff40;border-radius:3px;color:#f5f5f5;text-decoration:none;font-size:12px}
     #loading-retry:hover{background:#ffffff12}#loading-retry:focus-visible{outline:2px solid #e82127;outline-offset:4px}
     #loading [hidden]{display:none!important}.loading-noscript{margin:20px 0 0;font-size:12px;color:#aeb7c3;line-height:1.6}
     @media(prefers-reduced-motion:reduce){#loading,#loading-fill{transition:none}}
   </style>
-  <script type="module" crossorigin src="./assets/index-C6qXc7db.js"></script>
+  <script type="module" crossorigin src="./assets/index-DsegwRdp.js"></script>
 </head>
 <body class="driving">
   <div id="game" inert aria-hidden="true">
-  <canvas id="scene" aria-label="Three dimensional Roadster driving simulator"></canvas>
+  <canvas id="scene" aria-label="Flying car simulator: a three dimensional driving and flight game"></canvas>
   <div class="vignette" aria-hidden="true"></div>
   <header class="topbar">
-    <div class="brand"><span>Flying car</span><small id="current-area">Proving grounds</small></div>
+    <div class="brand"><span>Flying car simulator</span><small id="current-area">Proving grounds</small></div>
     <nav class="top-actions" aria-label="Driving tools">
       <button id="sound" class="sound-button" title="Toggle sound (M)" aria-label="Toggle sound (M)">Sound <span id="sound-state">OFF</span></button>
       <button id="camera-view" class="icon-button" title="Cycle camera (C)" aria-label="Cycle camera"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h5l2-3h4l2 3h5v13H3z"/><circle cx="12" cy="13" r="4"/></svg></button>
@@ -183,13 +222,14 @@
   </div>
   <div id="loading" aria-busy="true">
     <div class="loading-card">
-      <div class="loader-brand">Flying car</div>
-      <div id="loading-progress" class="loading-track" role="progressbar" aria-label="Loading Flying car" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="Loading simulator">
+      <h1 class="loader-brand">Flying car simulator</h1>
+      <div id="loading-progress" class="loading-track" role="progressbar" aria-label="Loading Flying car simulator" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="Loading simulator">
         <span id="loading-fill"></span>
       </div>
       <div class="loading-detail"><span id="loading-status" role="status" aria-live="polite">Loading simulator</span><span id="loading-percent" aria-hidden="true">0%</span></div>
+      <p class="loading-disclaimer">A game about the future.<br>Any resemblance to the present is&nbsp;intentional.</p>
       <a id="loading-retry" href="" hidden>Retry</a>
-      <noscript><p class="loading-noscript">Enable JavaScript to start driving.</p></noscript>
+      <noscript><p class="loading-noscript">Play Flying car simulator free in your browser. Drive, boost and fly through stunt courses, highways and a neon city with keyboard, controller or mobile touch controls. Enable JavaScript to start driving.</p></noscript>
     </div>
   </div>
   <script>
