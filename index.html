@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <link rel="preconnect" href="https://multiplayer.jonniek.com" crossorigin>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#101113" />
@@ -72,11 +73,10 @@
     .mode-choice:hover{background:#263442;border-color:#ffffff90}.mode-choice:focus-visible{outline:2px solid #e82127;outline-offset:4px}
     .mode-choice-multi{background:#253c3ad9;border-color:#9cc9bd80}
     .mode-choice:disabled{opacity:.45;cursor:default}.mode-choice:disabled:hover{background:#253c3ad9;border-color:#9cc9bd80}
-    #mode-availability{display:block;margin-top:5px;font-size:10px;font-weight:400}
     @media(max-height:440px){#loading.choosing-mode .loading-card{margin-bottom:18px}.mode-choice{padding:12px 10px}}
     @media(prefers-reduced-motion:reduce){#loading,#loading-fill{transition:none}}
   </style>
-  <script type="module" crossorigin src="./assets/index-CU61Q-7J.js"></script>
+  <script type="module" crossorigin src="./assets/index-DUTskFQv.js"></script>
 </head>
 <body class="driving">
   <div id="game" inert aria-hidden="true">
@@ -154,6 +154,7 @@
   </aside>
   <aside id="multiplayer-status" class="multiplayer-status" aria-label="Multiplayer session" hidden>
     <span id="multiplayer-count" hidden>Multiplayer</span>
+    <select id="multiplayer-shard" aria-label="Shard" hidden><option value="">Automatic</option></select>
     <button id="multiplayer-join" type="button" hidden>Join multiplayer</button>
     <button id="multiplayer-leave" type="button" aria-label="Leave multiplayer and continue in single player" hidden>Leave</button>
   </aside>
@@ -269,7 +270,7 @@
       <section id="loading-modes" aria-label="Play mode" hidden>
         <div class="mode-choices">
           <button id="mode-single" class="mode-choice" type="button">Single player</button>
-          <button id="mode-multiplayer" class="mode-choice mode-choice-multi" type="button">Multiplayer<small id="mode-availability" hidden>Unavailable</small></button>
+          <button id="mode-multiplayer" class="mode-choice mode-choice-multi" type="button">Multiplayer</button>
         </div>
       </section>
       <p class="loading-disclaimer">A game about the future.<br>Any resemblance to the present is&nbsp;intentional.</p>
