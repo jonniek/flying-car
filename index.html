@@ -19,16 +19,16 @@
   <meta property="og:title" content="Flying car simulator" />
   <meta property="og:description" content="Play Flying car simulator free in your browser. Drive, boost and fly a sports car through stunt courses, highways and a neon city. Desktop and mobile controls." />
   <meta property="og:url" content="https://jonniek.github.io/flying-car/" />
-  <meta property="og:image" content="https://jonniek.github.io/flying-car/social/flying-car-simulator-v3.jpg" />
+  <meta property="og:image" content="https://jonniek.github.io/flying-car/social/flying-car-simulator-v5.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="A banked white sports car beside Starship, with the city skyline behind it, firing downward and sideways jets and rear boost. Flying car simulator." />
+  <meta property="og:image:alt" content="A white sports car boosts past the launch tower and city skyline as three distant cars tumble through the sky, one nearly vertical and another upside down. Flying car simulator." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Flying car simulator" />
   <meta name="twitter:description" content="Play Flying car simulator free in your browser. Drive, boost and fly a sports car through stunt courses, highways and a neon city. Desktop and mobile controls." />
-  <meta name="twitter:image" content="https://jonniek.github.io/flying-car/social/flying-car-simulator-v3.jpg" />
-  <meta name="twitter:image:alt" content="A banked white sports car beside Starship, with the city skyline behind it, firing downward and sideways jets and rear boost. Flying car simulator." />
+  <meta name="twitter:image" content="https://jonniek.github.io/flying-car/social/flying-car-simulator-v5.jpg" />
+  <meta name="twitter:image:alt" content="A white sports car boosts past the launch tower and city skyline as three distant cars tumble through the sky, one nearly vertical and another upside down. Flying car simulator." />
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -36,7 +36,7 @@
       "name": "Flying car simulator",
       "description": "Play Flying car simulator free in your browser. Drive, boost and fly a sports car through stunt courses, highways and a neon city. Desktop and mobile controls.",
       "url": "https://jonniek.github.io/flying-car/",
-      "image": "https://jonniek.github.io/flying-car/social/flying-car-simulator-v3.jpg",
+      "image": "https://jonniek.github.io/flying-car/social/flying-car-simulator-v5.jpg",
       "inLanguage": "en",
       "genre": ["Driving", "Flight simulation"],
       "playMode": "SinglePlayer",
@@ -75,7 +75,7 @@
     @media(max-height:440px){#loading.choosing-mode .loading-card{margin-bottom:18px}.mode-choice{padding:12px 10px}}
     @media(prefers-reduced-motion:reduce){#loading,#loading-fill{transition:none}}
   </style>
-  <script type="module" crossorigin src="./assets/index-Bw0_HcC3.js"></script>
+  <script type="module" crossorigin src="./assets/index-CXwDPanD.js"></script>
 </head>
 <body class="driving">
   <div id="game" inert aria-hidden="true">
@@ -86,6 +86,9 @@
     <nav class="top-actions" aria-label="Driving tools">
       <button id="sound" class="sound-button" title="Toggle sound (M)" aria-label="Toggle sound (M)">Sound <span id="sound-state">OFF</span></button>
       <button id="camera-view" class="icon-button" title="Cycle camera (C)" aria-label="Cycle camera"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h5l2-3h4l2 3h5v13H3z"/><circle cx="12" cy="13" r="4"/></svg></button>
+      <div id="car-color-control" class="car-color-control">
+        <button id="car-color-toggle" class="icon-button" type="button" title="Cycle car color" aria-label="Change car color"><span class="car-color-chip" aria-hidden="true"></span></button>
+      </div>
     </nav>
     <aside id="multiplayer-status" class="multiplayer-status" aria-label="Multiplayer session" hidden>
       <span id="multiplayer-count" hidden>Multiplayer</span>
@@ -249,12 +252,17 @@
       </div>
       <div id="loading-detail" class="loading-detail"><span id="loading-status" role="status" aria-live="polite">Loading simulator</span><span id="loading-percent" aria-hidden="true">0%</span></div>
       <section id="loading-modes" aria-label="Play mode" hidden>
+        <button id="mode-car-color" class="mode-car-color" type="button" title="Cycle car color" aria-label="Change car color">
+          <span class="car-color-chip" aria-hidden="true"></span>
+          <span class="mode-car-color-copy"><span>Car color</span><span id="mode-car-color-name" aria-live="polite">Pearl white</span></span>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 4 4 4-4 4"/></svg>
+        </button>
         <div class="mode-choices">
           <button id="mode-single" class="mode-choice" type="button">Single player</button>
           <button id="mode-multiplayer" class="mode-choice" type="button">Multiplayer</button>
         </div>
       </section>
-      <p class="loading-disclaimer">A game about the future.<br>Any resemblance to the present is&nbsp;intentional.</p>
+      <p class="loading-disclaimer">A game about the future.<br>Any resemblance to the present is&nbsp;coincidental.</p>
       <a id="loading-retry" href="" hidden>Retry</a>
       <noscript><p class="loading-noscript">Play Flying car simulator free in your browser. Drive, boost and fly through stunt courses, highways and a neon city with keyboard, controller or mobile touch controls. Enable JavaScript to start driving.</p></noscript>
     </div>
